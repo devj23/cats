@@ -3,8 +3,10 @@ import { fetchCategories } from "../api/cats.api";
 import Spinner from "../components/Spinner";
 import { NavLink } from "react-router-dom";
 import BreadCrumbs from "../components/BreadCrumbs";
+import useScrollTop from "../hooks/useScrollTop";
 
 const Categories = () => {
+  useScrollTop();
   const { data, isLoading, isError } = useQuery("categories", fetchCategories);
   if (isLoading)
     return (

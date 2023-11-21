@@ -5,8 +5,10 @@ import Spinner from "../components/Spinner";
 import { useParams } from "react-router-dom";
 import CatCard from "../components/CatCard";
 import BreadCrumbs from "../components/BreadCrumbs";
+import useScrollTop from "../hooks/useScrollTop";
 
 const SingleBreed = () => {
+  useScrollTop();
   const { breedId } = useParams();
   const { data, isLoading, isError } = useQuery(
     `breeds/${breedId!}`,

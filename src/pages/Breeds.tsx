@@ -5,8 +5,10 @@ import BreedCard from "../components/BreedCard";
 import SearchBar from "../components/SearchBar";
 import { useState } from "react";
 import BreadCrumbs from "../components/BreadCrumbs";
+import useScrollTop from "../hooks/useScrollTop";
 
 const Breeds = () => {
+  useScrollTop();
   const { data, isLoading, isError } = useQuery("breeds", fetchBreeds);
   const [term, setTerm] = useState<string>("");
   if (isLoading)

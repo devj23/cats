@@ -3,8 +3,10 @@ import { fetchRandomCats } from "../api/cats.api";
 import Spinner from "../components/Spinner";
 import CatCard from "../components/CatCard";
 import { useNavigate } from "react-router-dom";
+import useScrollTop from "../hooks/useScrollTop";
 
 const Home = () => {
+  useScrollTop();
   const nav = useNavigate();
   const navTo = (url: string) => () => nav(url);
   const { data, isLoading, isError } = useQuery("featured", fetchRandomCats);
