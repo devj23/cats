@@ -1,16 +1,15 @@
 import { useQuery } from "react-query";
-import { fetchCatsByBreed } from "../api/cats.api";
+import { fetchCatsByCategory } from "../api/cats.api";
 import Spinner from "../components/Spinner";
-
 import { useParams } from "react-router-dom";
 import CatCard from "../components/CatCard";
 import BreadCrumbs from "../components/BreadCrumbs";
 
-const SingleBreed = () => {
-  const { breedId } = useParams();
+const SingleCategory = () => {
+  const { categoryId } = useParams();
   const { data, isLoading, isError } = useQuery(
-    `breeds/${breedId!}`,
-    fetchCatsByBreed([breedId!])
+    `categories/${categoryId}`,
+    fetchCatsByCategory([categoryId!])
   );
   if (isLoading)
     return (
@@ -27,16 +26,16 @@ const SingleBreed = () => {
       </section>
     );
   }
-  const breedInfo = data[0].breeds[0];
+
   return (
     <>
       <section>
         <div className="container py-10">
           <BreadCrumbs />
-          <h2 className="text-3xl font-bold leading-snug mb-2">
-            {breedInfo.name}
+          <h2 className="text-3xl font-bold leading-snug mb-2 first-letter:uppercase">
+            {data[0].categories[0].name}
           </h2>
-          <p className="mb-5  text-lg text-gray-600">{breedInfo.description}</p>
+
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
             {(data as Cat[]).map((breed) => {
               return <CatCard includeBody={false} {...breed} />;
@@ -48,4 +47,4 @@ const SingleBreed = () => {
   );
 };
 
-export default SingleBreed;
+export default SingleCategory;

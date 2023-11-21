@@ -7,6 +7,12 @@ type Breed = {
   country_code: string;
   description: string;
   life_span: string;
+  reference_image_id: string;
+};
+
+type Category = {
+  id: number;
+  name: string;
 };
 
 type Cat = {

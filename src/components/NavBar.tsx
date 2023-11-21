@@ -11,8 +11,8 @@ const links = [
     label: "Breeds",
   },
   {
-    to: "/random",
-    label: "Random",
+    to: "/categories",
+    label: "Categories",
   },
 ];
 const linkClass = " text-gray-400 hover:text-gray-200 duration-200";

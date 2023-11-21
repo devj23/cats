@@ -1,34 +1,37 @@
-import { useNavigate } from "react-router-dom";
-import FeaturedCats from "../components/FeaturedCats";
+import { useQuery } from "react-query";
+import { fetchRandomCats } from "../api/cats.api";
+import Spinner from "../components/Spinner";
+import CatCard from "../components/CatCard";
 
 const Home = () => {
-  const navi = useNavigate();
-  const navTo = (link: string) => () => navi(link);
+  const { data, isLoading, isError } = useQuery("featured", fetchRandomCats);
+  if (isLoading)
+    return (
+      <section>
+        <div className="container">
+          <Spinner />
+        </div>
+      </section>
+    );
+  if (isError) {
+    return (
+      <section>
+        <div className="container">Something Went Wrong</div>
+      </section>
+    );
+  }
   return (
     <>
       <section>
-        <div className="container gap-4 flex flex-col items-center py-20">
-          <h1 className="text-5xl font-bold leading-snug">Nothing But Cats</h1>
-          <p className="text-lg font-medium">
-            All the kitties you could ever want to see, and more!
-          </p>
-          <div className="flex items-center gap-5">
-            <button
-              onClick={navTo("/breeds")}
-              className="duration-200 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600"
-            >
-              All Cat Breeds
-            </button>
-            <button
-              onClick={navTo("/random")}
-              className="duration-200 px-4 py-2 rounded-md bg-indigo-500 text-white hover:bg-indigo-600"
-            >
-              Random Kitties
-            </button>
+        <div className="container py-10">
+          <h2 className="text-3xl font-bold mb-5">Featured Cats</h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+            {(data as Cat[]).slice(0, 3).map((cat) => {
+              return <CatCard {...cat} />;
+            })}
           </div>
         </div>
       </section>
-      <FeaturedCats />
     </>
   );
 };
