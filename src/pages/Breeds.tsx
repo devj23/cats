@@ -34,7 +34,7 @@ const Breeds = () => {
               placeholder="Search breeds..."
             />
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
             {!breeds ? (
               <div className="col-span-full justify-center flex items-center w-full h-full">
                 <Spinner />

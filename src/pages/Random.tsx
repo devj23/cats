@@ -20,7 +20,7 @@ const Random = () => {
     <section className="bg-gray-300 py-20">
       <div className="container ">
         <h2 className="text-3xl font-bold mb-5">Random Cats</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
           {!cats ? <Spinner /> : cats.map((c) => <CatCard key={c.id} {...c} />)}
         </div>
       </div>
