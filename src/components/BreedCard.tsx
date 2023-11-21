@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import Spinner from "./Spinner";
+import { NavLink } from "react-router-dom";
 
 type BreedCardProps = Breed;
 const BreedCard = ({
+  id,
   name,
   reference_image_id,
   description,
@@ -27,7 +29,7 @@ const BreedCard = ({
         isLoading
           ? "bg-gray-400 min-h-[250px] flex justify-center items-center"
           : "bg-white"
-      } rounded-md`}
+      } rounded-md flex flex-col`}
     >
       {isLoading ? (
         <Spinner />
@@ -38,9 +40,18 @@ const BreedCard = ({
               <img className="object-cover object-center" src={img} />
             </div>
           )}
-          <div className="p-6">
-            <h4 className="text-xl font-medium mb-4">{name}</h4>
-            <p className="text-gray-600">{description}</p>
+          <div className="p-6 flex flex-col justify-between flex-grow">
+            <div>
+              <h4 className="text-xl font-medium mb-4">{name}</h4>
+              <p className="text-gray-600 mb-4">{description}</p>
+            </div>
+            <NavLink
+              className="w-min whitespace-nowrap block px-4 py-2 bg-blue-500 hover:bg-blue-600 duration-200 rounded-md text-gray-200"
+              to={`/breeds/${id}`}
+              state={{ name, description }}
+            >
+              More Like Me
+            </NavLink>
           </div>
         </>
       )}
