@@ -20,7 +20,7 @@ const FeaturedCats = () => {
     <section className="bg-gray-300 py-20">
       <div className="container ">
         <div className="flex  flex-wrap justify-center gap-5">
-          {!cats ? (
+          {cats === null || !cats.length ? (
             <Spinner />
           ) : (
             cats.slice(0, 3).map((c) => <CatCard key={c.id} {...c} />)

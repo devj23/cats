@@ -31,7 +31,8 @@ const SingleBreed = () => {
             {description}
           </p>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
-            {cats &&
+            {cats !== null &&
+              cats.length &&
               cats.map((c) => (
                 <CatCard includeBody={false} key={c.id} {...c} />
               ))}

@@ -35,7 +35,7 @@ const Breeds = () => {
             />
           </div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
-            {!breeds ? (
+            {breeds === null || !breeds.length ? (
               <div className="col-span-full justify-center flex items-center w-full h-full">
                 <Spinner />
               </div>
